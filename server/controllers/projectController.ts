@@ -11,6 +11,9 @@ const getAllProjects = (req: Request, res: Response) => {
 // @route /api/projects
 // @access Private
 const CreateProject = (req: Request, res: Response) => {
+  if (!req.body.title) {
+    throw new Error("title missing");
+  }
   res.json("create project");
 };
 
