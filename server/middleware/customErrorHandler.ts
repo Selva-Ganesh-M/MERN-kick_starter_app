@@ -8,7 +8,7 @@ export const customErrorHandler = (
   res: Response,
   next: NextFunction
 ) => {
-  res.status(err.status || 500).json({
+  res.status(res.statusCode !== 200 ? res.statusCode : 500).json({
     message: err.message,
     stack: NODE_ENV === "production" ? null : err.stack,
   });
