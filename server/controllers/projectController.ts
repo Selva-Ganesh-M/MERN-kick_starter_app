@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 const asyncHandler = require("express-async-handler");
-const Project = require("../models/Project");
+const Project = require("../models/projectModel");
 const mongoose = require("mongoose");
 
 // @desc GET ALL PROJECTS
