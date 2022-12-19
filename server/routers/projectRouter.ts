@@ -1,19 +1,19 @@
 import * as express from "express";
 const {
-  getAllProjects,
-  getSingleProject,
-  CreateProject,
-  updateProject,
-  deleteProject,
+  getAllProjectsHandler,
+  getSingleProjectHandler,
+  CreateProjectHandler,
+  updateProjectHandler,
+  deleteProjectHandler,
 } = require("../controllers/projectController");
 
 const router = express.Router();
 
-router.route("/").get(getAllProjects).post(CreateProject);
+router.route("/").get(getAllProjectsHandler).post(CreateProjectHandler);
 router
   .route("/:id")
-  .get(getSingleProject)
-  .put(updateProject)
-  .delete(deleteProject);
+  .get(getSingleProjectHandler)
+  .put(updateProjectHandler)
+  .delete(deleteProjectHandler);
 
 module.exports = router;

@@ -1,7 +1,26 @@
-import mongoose from "mongoose";
-import { IProjectModel, projectInterface } from "../Types/Types";
-import { projectSchema } from "./schema/projectSchema";
+import mongoose, { Document, Model, Schema } from "mongoose";
 
-const Project = mongoose.model<IProjectModel>("Project", projectSchema);
+export interface IProjectType {
+  title: string;
+}
 
-module.exports = mongoose.models.Project || Project;
+export interface ProjectDoc extends Document, IProjectType {}
+
+const projectSchema: Schema<IProjectType> = new Schema<IProjectType>(
+  {
+    title: {
+      required: true,
+      type: String,
+    },
+  },
+  {
+    timestamps: true,
+  }
+);
+
+const Project: Model<Document & IProjectType> = mongoose.model<
+  Document & IProjectType,
+  Model<Document & IProjectType>
+>("Project", projectSchema, "Projects");
+
+export default Project;
