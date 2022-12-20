@@ -7,7 +7,7 @@ import {
   getAllProjects,
   getSingleProject,
   updateProject,
-} from "../services/mongoServices";
+} from "../services/projectServices";
 const asyncHandler = require("express-async-handler");
 const Project = require("../models/projectModel");
 

@@ -1,6 +1,8 @@
 import { connectToDb } from "./database/db";
 import { customErrorHandler } from "./middleware/customErrorHandler";
 import * as Colors from "colors.ts";
+import userRouter from "./routers/userRouter";
+import authRouter from "./routers/authRouter";
 
 const express = require("express");
 const { PORT } = require("./utils/config");
@@ -11,6 +13,8 @@ const server = express();
 server.use(express.json());
 
 server.use("/api/projects", projectsRouter);
+server.use("/api/users", userRouter);
+server.use("/api/auth", authRouter);
 
 server.use(customErrorHandler);
 connectToDb().then(() => {

@@ -8,8 +8,16 @@ export const customErrorHandler = (
   res: Response,
   next: NextFunction
 ) => {
-  res.status(res.statusCode !== 200 ? res.statusCode : 500).json({
-    message: err.message,
-    stack: NODE_ENV === "production" ? null : err.stack,
-  });
+  const sCode = res.statusCode !== 200 ? err.status || res.statusCode : 500;
+  const msg = err.error
+    ? {
+        message: err.message,
+        details: err.error,
+        stack: NODE_ENV === "production" ? null : err.stack,
+      }
+    : {
+        message: err.message,
+        stack: NODE_ENV === "production" ? null : err.stack,
+      };
+  res.status(sCode).json(msg);
 };
